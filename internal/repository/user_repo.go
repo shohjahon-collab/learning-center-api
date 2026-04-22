@@ -1,9 +1,9 @@
 package repository
 
 import (
+	"app/internal/domain"
+	"app/internal/pkg/database"
 	"database/sql"
-	"learning-center-api/internal/domain"
-	"learning-center-api/internal/pkg/database"
 )
 
 type UserRepository struct {

@@ -7,8 +7,8 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/crypto/bcrypt"
 
-	"learning-center-api/internal/domain"
-	"learning-center-api/internal/repository"
+	"app/internal/domain"
+	"app/internal/repository"
 )
 
 type AuthService struct {

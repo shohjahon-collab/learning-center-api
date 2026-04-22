@@ -1,8 +1,8 @@
 package service
 
 import (
-	"learning-center-api/internal/domain"
-	"learning-center-api/internal/repository"
+	"app/internal/domain"
+	"app/internal/repository"
 )
 
 type CourseService struct {

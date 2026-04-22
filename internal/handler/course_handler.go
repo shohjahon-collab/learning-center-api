@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"learning-center-api/internal/domain"
-	"learning-center-api/internal/service"
+	"app/internal/domain"
+	"app/internal/service"
 
 	"github.com/gorilla/mux"
 )

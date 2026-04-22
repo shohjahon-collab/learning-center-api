@@ -3,9 +3,9 @@ package main
 import (
 	"log"
 
-	"learning-center-api/internal/domain"
-	"learning-center-api/internal/pkg/database"
-	"learning-center-api/internal/repository"
+	"app/internal/domain"
+	"app/internal/pkg/database"
+	"app/internal/repository"
 
 	"golang.org/x/crypto/bcrypt"
 )

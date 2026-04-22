@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"learning-center-api/internal/config"
+	"app/internal/config"
 
 	_ "github.com/mattn/go-sqlite3"
 )

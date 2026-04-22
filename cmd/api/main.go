@@ -4,12 +4,12 @@ import (
 	"log"
 	"net/http"
 
-	"learning-center-api/internal/config"
-	"learning-center-api/internal/handler"
-	"learning-center-api/internal/middleware"
-	"learning-center-api/internal/pkg/database"
-	"learning-center-api/internal/repository"
-	"learning-center-api/internal/service"
+	"app/internal/config"
+	"app/internal/handler"
+	"app/internal/middleware"
+	"app/internal/pkg/database"
+	"app/internal/repository"
+	"app/internal/service"
 
 	"github.com/gorilla/mux"
 )

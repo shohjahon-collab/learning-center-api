@@ -7,8 +7,8 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"learning-center-api/internal/domain"
-	"learning-center-api/internal/service"
+	"app/internal/domain"
+	"app/internal/service"
 )
 
 type AuthHandler struct {
