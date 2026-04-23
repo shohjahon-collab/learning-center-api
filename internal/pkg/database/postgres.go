@@ -4,8 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-
-	"app/internal/config"
+	"os"
 
 	_ "github.com/lib/pq"
 )
@@ -13,9 +12,8 @@ import (
 var DB *sql.DB
 
 func InitDB() error {
-	cfg := config.Load()
 	var err error
-	DB, err = sql.Open("postgres", cfg.DBConnString())
+	DB, err = sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		return fmt.Errorf("failed to open database: %w", err)
 	}
