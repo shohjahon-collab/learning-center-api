@@ -7,7 +7,7 @@ import (
 
 	"app/internal/config"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/lib/pq"
 )
 
 var DB *sql.DB
@@ -15,7 +15,7 @@ var DB *sql.DB
 func InitDB() error {
 	cfg := config.Load()
 	var err error
-	DB, err = sql.Open("sqlite3", cfg.DBPath)
+	DB, err = sql.Open("postgres", cfg.DBConnString())
 	if err != nil {
 		return fmt.Errorf("failed to open database: %w", err)
 	}
@@ -24,10 +24,9 @@ func InitDB() error {
 		return fmt.Errorf("failed to ping database: %w", err)
 	}
 
-	// Create tables
 	userTable := `
 		CREATE TABLE IF NOT EXISTS users (
-			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			id SERIAL PRIMARY KEY,
 			email TEXT UNIQUE NOT NULL,
 			full_name TEXT NOT NULL,
 			phone TEXT,
@@ -37,7 +36,7 @@ func InitDB() error {
 	`
 	courseTable := `
 		CREATE TABLE IF NOT EXISTS courses (
-			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			id SERIAL PRIMARY KEY,
 			title TEXT NOT NULL,
 			description TEXT,
 			instructor_id INTEGER,

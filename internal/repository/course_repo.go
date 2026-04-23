@@ -3,24 +3,16 @@ package repository
 import (
 	"app/internal/domain"
 	"app/internal/pkg/database"
-	"database/sql"
 )
 
-type CourseRepository struct {
-	DB *sql.DB
-}
+type CourseRepository struct{}
 
 func (r *CourseRepository) Create(course *domain.Course) error {
-	query := `INSERT INTO courses (title, description, instructor_id) VALUES (?, ?, ?)`
-	result, err := database.DB.Exec(query, course.Title, course.Description, course.InstructorID)
+	query := `INSERT INTO courses (title, description, instructor_id) VALUES ($1, $2, $3) RETURNING id`
+	err := database.DB.QueryRow(query, course.Title, course.Description, course.InstructorID).Scan(&course.ID)
 	if err != nil {
 		return err
 	}
-	id, err := result.LastInsertId()
-	if err != nil {
-		return err
-	}
-	course.ID = int(id)
 	return nil
 }
 
@@ -45,7 +37,7 @@ func (r *CourseRepository) GetAll() ([]domain.Course, error) {
 
 func (r *CourseRepository) GetByID(id int) (*domain.Course, error) {
 	course := &domain.Course{}
-	query := `SELECT id, title, description, instructor_id FROM courses WHERE id = ?`
+	query := `SELECT id, title, description, instructor_id FROM courses WHERE id = $1`
 	err := database.DB.QueryRow(query, id).Scan(&course.ID, &course.Title, &course.Description, &course.InstructorID)
 	if err != nil {
 		return nil, err
